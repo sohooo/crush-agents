@@ -1,0 +1,24 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "providers": {
+    "lab-vllm": {
+      "name": "Lab vLLM",
+      "type": "openai-compat",
+      "base_url": "https://assist.lab.dev/v1",
+      "api_key": "dummy",
+      "models": [
+        { "id": "Qwen2.5-Coder-7B-Instruct", "name": "Qwen Coder (lab)", "default_max_tokens": 8192, "context_window": 131072 }
+      ]
+    }
+  },
+  "options": {
+    "tui": { "compact_mode": true },
+    "disable_provider_auto_update": true,
+    "debug": false,
+    "context_paths": [
+      "docs/AGENTS.md",
+      "docs/agent-messages",
+      "docs/adr"
+    ]
+  }
+}
