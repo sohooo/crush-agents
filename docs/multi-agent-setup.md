@@ -24,11 +24,21 @@ Feel free to adjust context paths to match your repository layout.
 
 ## Launching the tmux workspace
 
-Use the helper script to spawn all agents at once:
+If you want to reuse these configs in another repository, run the bootstrap helper directly from your target project:
 
 ```bash
-configs/multi-agent/tmux-multi-agent.sh
+curl -fsSL https://gitlab.example.dev/ai/crush/-/raw/main/scripts/bootstrap-crush-project.sh | bash
 ```
+
+The script clones or updates `https://gitlab.example.dev/ai/crush` into `<project>/.crush`. Pass `--force` to replace the directory entirely, or set `CRUSH_REPO_URL=<your-mirror>`/`CRUSH_REPO_BRANCH=<branch>` to pull from a different source.
+
+Once the configs live alongside your code, use the helper script to spawn all agents at once:
+
+```bash
+.crush/configs/multi-agent/tmux-multi-agent.sh
+```
+
+If you are working directly from this repository, the script also lives under `configs/multi-agent/tmux-multi-agent.sh`.
 
 The script will:
 
