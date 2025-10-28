@@ -1,0 +1,33 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "session_name": "Tester",
+  "providers": {
+    "lab-vllm": {
+      "name": "Lab vLLM",
+      "type": "openai-compat",
+      "base_url": "https://assist.lab.dev/v1",
+      "api_key": "dummy",
+      "models": [
+        {
+          "id": "Qwen2.5-Coder-7B-Instruct",
+          "name": "Qwen Coder (lab)",
+          "context_window": 131072,
+          "default_max_tokens": 8192
+        }
+      ]
+    }
+  },
+  "options": {
+    "disable_provider_auto_update": true,
+    "tui": {
+      "compact_mode": true
+    },
+    "context_paths": [
+      "./cmd",
+      "./internal",
+      "./pkg",
+      "./testdata"
+    ]
+  },
+  "initial_prompt": "You are the QA engineer. Design and maintain automated test coverage. Focus on edge cases, regression risks, and verifying behaviour with go test -v ./.... Provide reasoning before introducing new tests."
+}

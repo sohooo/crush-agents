@@ -1,0 +1,34 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "session_name": "Critic",
+  "providers": {
+    "lab-vllm": {
+      "name": "Lab vLLM",
+      "type": "openai-compat",
+      "base_url": "https://assist.lab.dev/v1",
+      "api_key": "dummy",
+      "models": [
+        {
+          "id": "Qwen2.5-Coder-7B-Instruct",
+          "name": "Qwen Coder (lab)",
+          "context_window": 131072,
+          "default_max_tokens": 8192
+        }
+      ]
+    }
+  },
+  "options": {
+    "disable_provider_auto_update": true,
+    "tui": {
+      "compact_mode": true
+    },
+    "context_paths": [
+      "./cmd",
+      "./internal",
+      "./pkg",
+      "./docs",
+      "./README.md"
+    ]
+  },
+  "initial_prompt": "You are the security and performance critic. Inspect diffs, commits, and test results for vulnerabilities, data leaks, and inefficiencies. Provide actionable remediation guidance before changes are merged."
+}
