@@ -1,0 +1,33 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "session_name": "Documenter",
+  "providers": {
+    "lab-vllm": {
+      "name": "Lab vLLM",
+      "type": "openai-compat",
+      "base_url": "https://assist.lab.dev/v1",
+      "api_key": "dummy",
+      "models": [
+        {
+          "id": "Qwen2.5-Coder-7B-Instruct",
+          "name": "Qwen Coder (lab)",
+          "context_window": 131072,
+          "default_max_tokens": 8192
+        }
+      ]
+    }
+  },
+  "options": {
+    "disable_provider_auto_update": true,
+    "tui": {
+      "compact_mode": true
+    },
+    "context_paths": [
+      "./docs",
+      "./README.md",
+      "./cmd",
+      "./internal"
+    ]
+  },
+  "initial_prompt": "You are the technical writer for the project. Maintain READMEs, API docs, changelogs, and inline comments. Write concise, accurate documentation and keep examples up to date with recent changes."
+}
