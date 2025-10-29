@@ -178,6 +178,14 @@ install_crushignore() {
 
 install_crushignore
 
+if ! command -v tmuxinator >/dev/null 2>&1; then
+  cat <<'TMUXINATOR_HINT'
+tmuxinator is not installed. Install it with:
+  dnf install -y ruby
+  gem install tmuxinator
+TMUXINATOR_HINT
+fi
+
 echo
 cat <<'NEXT_STEPS'
 Bootstrap complete! Next steps:

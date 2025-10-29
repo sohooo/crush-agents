@@ -1,0 +1,24 @@
+name: crush-multi-agent
+root: <%= ENV.fetch("CRUSH_WORKSPACE_ROOT", Dir.pwd) %>
+
+windows:
+  - workspace:
+      layout: tiled
+      shell_command_before:
+        - mkdir -p .crush/logs
+        - export CRUSH_LOG_DIR="${CRUSH_LOG_DIR:-.crush/logs}"
+      panes:
+        - architect: CRUSH_LOG_DIR="${CRUSH_LOG_DIR:-.crush/logs}" crush --config .crush/configs/multi-agent/architect.crush.json
+        - engineer: CRUSH_LOG_DIR="${CRUSH_LOG_DIR:-.crush/logs}" crush --config .crush/configs/multi-agent/engineer.crush.json
+        - tester: CRUSH_LOG_DIR="${CRUSH_LOG_DIR:-.crush/logs}" crush --config .crush/configs/multi-agent/tester.crush.json
+        - documenter: CRUSH_LOG_DIR="${CRUSH_LOG_DIR:-.crush/logs}" crush --config .crush/configs/multi-agent/documenter.crush.json
+        - critic: CRUSH_LOG_DIR="${CRUSH_LOG_DIR:-.crush/logs}" crush --config .crush/configs/multi-agent/critic.crush.json
+        - logs:
+            commands:
+              - mkdir -p .crush/logs
+              - touch .crush/logs/crush.log
+              - tail -n 200 -f .crush/logs/crush.log
+        - master:
+            commands:
+              - clear
+              - printf 'Master pane ready for git operations and editing.\n'

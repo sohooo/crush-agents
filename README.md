@@ -18,6 +18,23 @@ The bootstrap script clones or updates the Crush configuration repo into `.crush
 
 The tmux helper creates (or reattaches to) a `crush-multi-agent` session and opens panes for the Architect, Engineer, Tester, Documenter, and Critic roles. Make sure `tmux` is installed locally; rerunning the script simply drops you back into the existing session.
 
+## Optional: tmuxinator workspace
+
+For a richer workspace that opens every agent plus dedicated panes for the Crush log stream and a master shell, install [tmuxinator](https://github.com/tmuxinator/tmuxinator) and launch the provided configuration:
+
+```bash
+dnf install -y ruby
+gem install tmuxinator
+```
+
+Then start the project-scoped tmuxinator workspace from your repository root:
+
+```bash
+tmuxinator start -p .crush/configs/multi-agent/crush-multi-agent.yml
+```
+
+The layout mirrors the tmux helper while automatically tailing `./.crush/logs/crush.log` (created on demand) and leaving a master pane open for editing, git operations, or other coordination tasks.
+
 When you are ready to dive deeper into the workspace layout or customise roles, continue with the detailed guides below.
 
 ## Guides
