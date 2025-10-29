@@ -1,0 +1,33 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "session_name": "SoloPipeline",
+  "providers": {
+    "lab-vllm": {
+      "name": "Lab vLLM",
+      "type": "openai-compat",
+      "base_url": "https://assist.lab.dev/v1",
+      "api_key": "dummy",
+      "models": [
+        { "id": "Qwen2.5-Coder-7B-Instruct", "name": "Qwen Coder (lab)", "default_max_tokens": 8192, "context_window": 131072 }
+      ]
+    }
+  },
+  "options": {
+    "tui": { "compact_mode": true },
+    "disable_provider_auto_update": true,
+    "debug": false,
+    "context_paths": [
+      "docs/AGENTS.md",
+      "docs/PIPELINE.md",
+      "docs/adr",
+      "README.md",
+      "cmd",
+      "internal",
+      "pkg"
+    ]
+  },
+  "permissions": {
+    "allowed_tools": ["view", "ls", "grep", "edit"]
+  },
+  "initial_prompt": "You are a SINGLE AGENT that runs a 5-phase loop: 1) ARCHITECT (plan), 2) ENGINEER (implement), 3) TESTER (write tests), 4) DOC (update docs), 5) CRITIC (security & performance review). Always follow docs/PIPELINE.md. Keep changes atomic and small. After each phase, checkpoint to docs/agent-messages with Next Action. Use commit prefixes [ARCH]/[ENGINEER]/[TESTER]/[DOC]/[CRITIC]. Refuse to merge or finish a loop if tests or review gates fail. Propose minimal diffs; explain trade-offs briefly."
+}
