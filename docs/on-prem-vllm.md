@@ -44,6 +44,16 @@ Copy the reference config from [`configs/crush.lab-vllm.json`](../configs/crush.
 - Replace `QWEN_CODER_MODEL_ID` with the model identifier returned by `GET /v1/models`.
 - Adjust `context_window` and `default_max_tokens` if your deployment uses different limits.
 
+### Run automated preflight checks
+
+After updating the config, validate connectivity and token settings before handing the file to teammates:
+
+```bash
+scripts/check-vllm.sh --config ~/.config/crush/crush.json --provider lab-vllm
+```
+
+The script verifies that `/v1/models` is reachable with your token, confirms that the configured model IDs are present remotely, and checks that the context window and default token limits are consistent. Resolve any reported failures before proceeding.
+
 For air-gapped environments, keep `"disable_provider_auto_update": true` (or set `CRUSH_DISABLE_PROVIDER_AUTO_UPDATE=1`) to avoid external provider updates.
 
 ## 4. Optional Enhancements
