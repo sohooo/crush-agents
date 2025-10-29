@@ -37,7 +37,25 @@ The layout mirrors the tmux helper while automatically tailing `./.crush/logs/cr
 
 When you are ready to dive deeper into the workspace layout or customise roles, continue with the detailed guides below.
 
+## Solo pipeline: run one Crush loop
+
+When you want to operate with a single well-tuned agent, use the Solo Pipeline
+configuration. It preserves the multi-agent discipline by simulating the five
+phases inside one loop.
+
+```bash
+# Launch the single-agent workflow
+crush --config .crush/single-agent.crush.json
+```
+
+The configuration pins a compact TUI layout, restricts the allowed tools for
+consistency, and sets the initial prompt to enforce the phase gates documented
+in [`docs/PIPELINE.md`](docs/PIPELINE.md). Keep the `docs/agent-messages/`
+directory in version control—the agent writes a short checkpoint file after
+each phase so you have an auditable history of the loop.
+
 ## Guides
 
 - [On-premise vLLM walkthrough](docs/on-prem-vllm.md)
 - [Multi-agent Crush workspace](docs/multi-agent-setup.md)
+- [Solo agent pipeline](docs/PIPELINE.md)
