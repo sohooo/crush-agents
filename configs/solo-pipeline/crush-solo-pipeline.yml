@@ -1,0 +1,26 @@
+name: crush-solo-pipeline
+root: <%= ENV.fetch("CRUSH_WORKSPACE_ROOT", Dir.pwd) %>
+
+windows:
+  - pipeline:
+      layout: main-horizontal
+      shell_command_before:
+        - mkdir -p .crush/logs
+        - export CRUSH_LOG_DIR="${CRUSH_LOG_DIR:-.crush/logs}"
+        - mkdir -p docs/agent-messages
+      panes:
+        - solo: CRUSH_LOG_DIR="${CRUSH_LOG_DIR:-.crush/logs}" crush --config .crush/single-agent.crush.json
+        - notes:
+            commands:
+              - cd docs/agent-messages
+              - ls -1 | tail -n 20
+              - printf '\nUse this pane to manage pipeline notes.\n'
+        - logs:
+            commands:
+              - mkdir -p .crush/logs
+              - touch .crush/logs/crush.log
+              - tail -n 200 -f .crush/logs/crush.log
+        - master:
+            commands:
+              - clear
+              - printf 'Master pane ready for editing, git, or other tasks.\n'

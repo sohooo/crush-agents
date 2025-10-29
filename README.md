@@ -54,6 +54,20 @@ in [`docs/PIPELINE.md`](docs/PIPELINE.md). Keep the `docs/agent-messages/`
 directory in version control—the agent writes a short checkpoint file after
 each phase so you have an auditable history of the loop.
 
+### Optional: tmuxinator workspace (solo pipeline)
+
+You can mirror the multi-agent workflow by launching a tmuxinator session that
+dedicates panes to the solo pipeline, the shared log stream, a notes helper, and
+a master shell:
+
+```bash
+tmuxinator start -p .crush/configs/solo-pipeline/crush-solo-pipeline.yml
+```
+
+The workspace creates `.crush/logs/` (if missing), tails `crush.log`, and keeps
+`docs/agent-messages/` in view so you can append the checkpoint files required
+by the solo process.
+
 ## Guides
 
 - [On-premise vLLM walkthrough](docs/on-prem-vllm.md)
