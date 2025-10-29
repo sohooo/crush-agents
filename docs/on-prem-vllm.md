@@ -87,7 +87,7 @@ To allow Crush to run specific tools without prompting each time:
 
 ### Ignore Noisy Paths
 
-Add a `.crushignore` file (example provided in [`configs/.crushignore`](../configs/.crushignore)) to keep large or irrelevant directories out of context:
+Add a `.crushignore` file (an example is provided in [`configs/.crushignore`](../configs/.crushignore) and is copied automatically when you run `scripts/bootstrap-crush-project.sh`) to keep large or irrelevant directories out of context:
 
 ```
 node_modules/
