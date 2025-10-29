@@ -2,17 +2,25 @@
 
 This repository provides reference configuration files and documentation for running [Crush](https://github.com/charmbracelet/crush) against an on-premises [vLLM](https://github.com/vllm-project/vllm) deployment.
 
+## Quickstart: run the multi-agent workspace
+
+You can go from a blank repository to a fully running Crush workspace with two commands:
+
+```bash
+# 1. Bootstrap the shared configs into the current project
+curl -fsSL https://gitlab.example.dev/ai/crush/-/raw/main/scripts/bootstrap-crush-project.sh | bash
+
+# 2. Launch every agent inside a tmux session
+.crush/configs/multi-agent/tmux-multi-agent.sh
+```
+
+The bootstrap script clones or updates the Crush configuration repo into `.crush/`. Rerun it whenever you need fresh configs, add `--force` (`... | bash -s -- --force`) to replace the directory entirely, or set `CRUSH_REPO_URL`/`CRUSH_REPO_BRANCH` to target an internal mirror.
+
+The tmux helper creates (or reattaches to) a `crush-multi-agent` session and opens panes for the Architect, Engineer, Tester, Documenter, and Critic roles. Make sure `tmux` is installed locally; rerunning the script simply drops you back into the existing session.
+
+When you are ready to dive deeper into the workspace layout or customise roles, continue with the detailed guides below.
+
 ## Guides
 
 - [On-premise vLLM walkthrough](docs/on-prem-vllm.md)
 - [Multi-agent Crush workspace](docs/multi-agent-setup.md)
-
-## Bootstrap another project quickly
-
-From any repository that should host the Crush multi-agent configs, run:
-
-```bash
-curl -fsSL https://gitlab.example.dev/ai/crush/-/raw/main/scripts/bootstrap-crush-project.sh | bash
-```
-
-Re-run the same command at any time to update the `.crush` directory in place. Use `--force` (for example `... | bash -s -- --force`) to replace the directory entirely, and override the source via `CRUSH_REPO_URL`/`CRUSH_REPO_BRANCH` when mirroring the configs internally.
