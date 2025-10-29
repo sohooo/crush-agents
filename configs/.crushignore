@@ -1,4 +1,21 @@
+# Example ignore patterns for Crush context indexing.
+# Copy or customize this file in your project root as needed.
+
+# Dependency and build outputs
 node_modules/
 dist/
+build/
 vendor/
+.target/
+
+# Virtual environments and caches
+.venv/
 .env
+.env.*
+__pycache__/
+
+# Repository metadata and logs
+.git/
+.gitmodules
+*.log
+.DS_Store

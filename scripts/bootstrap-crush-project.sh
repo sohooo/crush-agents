@@ -156,6 +156,28 @@ else
   clone_repo "$TARGET_CRUSH_DIR"
 fi
 
+install_crushignore() {
+  local template="$TARGET_CRUSH_DIR/configs/.crushignore"
+  local dest="$PROJECT_ROOT/.crushignore"
+
+  if [[ ! -f "$template" ]]; then
+    return
+  fi
+
+  if [[ -e "$dest" ]]; then
+    echo "Existing .crushignore detected at $dest; leaving untouched." >&2
+    return
+  fi
+
+  if cp "$template" "$dest"; then
+    echo "Installed template .crushignore at $dest" >&2
+  else
+    echo "warning: failed to copy template .crushignore to $dest" >&2
+  fi
+}
+
+install_crushignore
+
 echo
 cat <<'NEXT_STEPS'
 Bootstrap complete! Next steps:
